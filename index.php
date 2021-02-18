@@ -82,9 +82,10 @@ for($i = 0; $i < 100; $i++){
     $pirminiuMasyvas[] = rand(333, 777);
 }
 
-foreach($pirminiuMasyvas as $key => $skaicius){
-    if (kiekSkaiciu($skaicius) < 0 ){
+foreach($pirminiuMasyvas as $key => &$skaicius){
+    if (kiekSkaiciu($skaicius) < 1) {
         unset($pirminiuMasyvas[$key]);
     }
 }
-_d($pirminiuMasyvas);
+print_r($pirminiuMasyvas);
+echo 'ilgis be pirminiu skaiciu: ' . count($pirminiuMasyvas);
