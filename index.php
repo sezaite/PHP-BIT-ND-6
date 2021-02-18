@@ -110,19 +110,17 @@ for($i = 0; $i < 3; $i++){
     $masyvas9[] = rand(1, 33);
 }
 
-isPirminiai($masyvas9);
+print_r(isPirminiai($masyvas9));
 
 function isPirminiai($masyvas9) {
     $masyvoIlgis = count($masyvas9);
-    for ($i = $masyvoIlgis - 3; $i < $masyvoIlgis - 1; $i++){
-        if(($masyvas9[$i] * 10) % 10 !== 0){
+    for ($i = $masyvoIlgis - 3; $i < $masyvoIlgis; $i++){
+        if(kiekSkaiciu($masyvas9[$i]) < 1){
             $masyvas9[] = rand(1, 33);
             return isPirminiai($masyvas9);
         }
+    } return $masyvas9;
     }
-    }
-
-print_r($masyvas9);
 
 echo '<br><br> 10/10.10 <br><br>';
 // Sugeneruokite masyvą iš 10 elementų, kurie yra masyvai iš 10 elementų, kurie yra atsitiktiniai skaičiai nuo 1 iki 100. Jeigu tokio masyvo pirminių skaičių vidurkis mažesnis už 70, suraskite masyve mažiausią skaičių 
