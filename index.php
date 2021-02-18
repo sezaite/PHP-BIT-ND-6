@@ -89,3 +89,40 @@ foreach($pirminiuMasyvas as $key => &$skaicius){
 }
 print_r($pirminiuMasyvas);
 echo 'ilgis be pirminiu skaiciu: ' . count($pirminiuMasyvas);
+
+echo '<br><br> 7U7ZD7-7 <br><br>';
+// Sugeneruokite atsitiktinio (nuo 10 iki 20) ilgio masyvą, kurio visi, išskyrus paskutinį, elementai yra atsitiktiniai skaičiai nuo 0 iki 10, o paskutinis masyvas, kuris generuojamas pagal tokią pat salygą kaip ir pirmasis masyvas. Viską pakartokite atsitiktinį nuo 10 iki 30  kiekį kartų. Paskutinio masyvo paskutinis elementas yra lygus 0;
+// function masyvoGeneravimas(){
+// $masyvoIlgis = rand(10, 20);
+// for($i = 0; $i < $masyvoIlgis - 1; $i++){
+//     $masyvas[] = rand(0, 10);
+// }
+// masyvas[] = masyvoGeneravimas();
+// }
+
+echo '<br><br> 8U8z*D8-8 <br><br>';
+// Suskaičiuokite septinto uždavinio elementų, kurie nėra masyvai, sumą.
+
+echo '<br><br> devintas <br><br>';
+// Sugeneruokite masyvą iš trijų elementų, kurie yra atsitiktiniai skaičiai nuo 1 iki 33. Jeigu tarp trijų paskutinių elementų yra nors vienas ne pirminis skaičius, prie masyvo pridėkite dar vieną elementą- atsitiktinį skaičių nuo 1 iki 33. Vėl patikrinkite pradinę sąlygą ir jeigu reikia pridėkite dar vieną elementą. Kartokite, kol sąlyga nereikalaus pridėti elemento. 
+
+for($i = 0; $i < 3; $i++){
+    $masyvas9[] = rand(1, 33);
+}
+
+isPirminiai($masyvas9);
+
+function isPirminiai($masyvas9) {
+    $masyvoIlgis = count($masyvas9);
+    for ($i = $masyvoIlgis - 3; $i < $masyvoIlgis - 1; $i++){
+        if(($masyvas9[$i] * 10) % 10 !== 0){
+            $masyvas9[] = rand(1, 33);
+            return isPirminiai($masyvas9);
+        }
+    }
+    }
+
+print_r($masyvas9);
+
+echo '<br><br> 10/10.10 <br><br>';
+// Sugeneruokite masyvą iš 10 elementų, kurie yra masyvai iš 10 elementų, kurie yra atsitiktiniai skaičiai nuo 1 iki 100. Jeigu tokio masyvo pirminių skaičių vidurkis mažesnis už 70, suraskite masyve mažiausią skaičių 
