@@ -56,6 +56,7 @@ function kiekSkaiciu($skaicius){
         }
     }
     // return $skaicius . 'graziai dalijasi is: ' . $count . ' sveikuju skaiciu.'; <----------cia tik ketvirtam uzd 
+    return $count;
 }
 
 echo kiekSkaiciu($ponasSkaicius);
@@ -67,4 +68,23 @@ for($i = 0; $i < 100; $i++){
     $masyvas[] = rand(33, 77);
 }
 
-usort
+usort($masyvas, function($a, $b){
+    return kiekSkaiciu($b) <=> kiekSkaiciu($a);
+});
+
+echo '<pre>'; 
+// print_r($masyvas); <======= ATKOMENTUOTI
+
+echo '<br><br> 66U6ZD <br><br>';
+// Sugeneruokite masyvą iš 100 elementų, kurio reikšmės atsitiktiniai skaičiai nuo 333 iki 777. Naudodami 4 uždavinio funkciją iš masyvo ištrinkite pirminius skaičius.
+
+for($i = 0; $i < 100; $i++){
+    $pirminiuMasyvas[] = rand(333, 777);
+}
+
+foreach($pirminiuMasyvas as $key => $skaicius){
+    if (kiekSkaiciu($skaicius) < 0 ){
+        unset($pirminiuMasyvas[$key]);
+    }
+}
+_d($pirminiuMasyvas);
