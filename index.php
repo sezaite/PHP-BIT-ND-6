@@ -95,9 +95,10 @@ echo '<br><br> 7U7ZD7-7 <br><br>';
 
 $iteracijuSkaicius = rand(10, 30);
 $masyvoIlgis = rand(10, 20);
-$iteracijuSkaiciavimas = 0;
+$iteracijuSkaiciavimas = 0; //gal sita galeciau pakeisti statiniu f-jso viduje?
 
-print_r(masyvoKurimas($masyvoIlgis, $iteracijuSkaiciavimas, $iteracijuSkaicius));
+$masyvasRec = (masyvoKurimas($masyvoIlgis, $iteracijuSkaiciavimas, $iteracijuSkaicius));
+// print_r($masyvasRec); <=== spausdina masyva
 
 function masyvoKurimas($masyvoIlgis, &$iteracijuSkaiciavimas, $iteracijuSkaicius){
     $iteracijuSkaiciavimas++;
@@ -108,9 +109,18 @@ function masyvoKurimas($masyvoIlgis, &$iteracijuSkaiciavimas, $iteracijuSkaicius
     return $masyvasRec;
 }
 
-
 echo '<br><br> 8U8z*D8-8 <br><br>';
 // Suskaičiuokite septinto uždavinio elementų, kurie nėra masyvai, sumą.
+
+$sumosSumeles = 0;
+print_r(masyvasRecSuma($masyvasRec, $sumosSumeles));
+
+function masyvasRecSuma($masyvasRec, &$sumosSumeles){
+foreach($masyvasRec as $key => &$value){
+    is_array($value) ? masyvasRecSuma($value, $sumosSumeles) : $sumosSumeles+= $key;
+    }
+    return $sumosSumeles;
+}
 
 echo '<br><br> devintas <br><br>';
 // Sugeneruokite masyvą iš trijų elementų, kurie yra atsitiktiniai skaičiai nuo 1 iki 33. Jeigu tarp trijų paskutinių elementų yra nors vienas ne pirminis skaičius, prie masyvo pridėkite dar vieną elementą- atsitiktinį skaičių nuo 1 iki 33. Vėl patikrinkite pradinę sąlygą ir jeigu reikia pridėkite dar vieną elementą. Kartokite, kol sąlyga nereikalaus pridėti elemento. 
@@ -126,7 +136,7 @@ function isPirminiai($masyvas9) {
     for ($i = $masyvoIlgis - 3; $i < $masyvoIlgis; $i++){
         if(kiekSkaiciu($masyvas9[$i]) < 1){
             $masyvas9[] = rand(1, 33);
-            return isPirminiai($masyvas9);
+            return isPirminiai($masyvas9); ///kokiu atveju cia reikia return rasyt???
         }
     } return $masyvas9;
     }
