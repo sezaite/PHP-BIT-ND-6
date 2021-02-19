@@ -49,7 +49,7 @@ function kiekSkaiciu($skaicius){
         return false;
     } else {
         $count = 0;
-        for($i = 2; $i < $skaicius; $i++){
+        for($i = 1; $i <= $skaicius; $i++){
             if ($skaicius % $i === 0){
                 $count++;
             }
@@ -119,7 +119,9 @@ function masyvasRecSuma($masyvasRec, &$sumosSumeles){
 foreach($masyvasRec as $key => &$value){
     is_array($value) ? masyvasRecSuma($value, $sumosSumeles) : $sumosSumeles+= $key;
     }
+    unset($value);
     return $sumosSumeles;
+
 }
 
 echo '<br><br> devintas <br><br>';
@@ -129,12 +131,11 @@ for($i = 0; $i < 3; $i++){
     $masyvas9[] = rand(1, 33);
 }
 
-// print_r(isPirminiai($masyvas9)); <============ funkcijos paleidimas ir printinimas
-
+print_r(isPirminiai($masyvas9));
 function isPirminiai($masyvas9) {
     $masyvoIlgis = count($masyvas9);
     for ($i = $masyvoIlgis - 3; $i < $masyvoIlgis; $i++){
-        if(kiekSkaiciu($masyvas9[$i]) < 1){
+        if(kiekSkaiciu($masyvas9[$i]) > 2){
             $masyvas9[] = rand(1, 33);
             return isPirminiai($masyvas9); ///kokiu atveju cia reikia return rasyt???
         }
@@ -142,4 +143,36 @@ function isPirminiai($masyvas9) {
     }
 
 echo '<br><br> 10/10.10 <br><br>';
-// Sugeneruokite masyvą iš 10 elementų, kurie yra masyvai iš 10 elementų, kurie yra atsitiktiniai skaičiai nuo 1 iki 100. Jeigu tokio masyvo pirminių skaičių vidurkis mažesnis už 70, suraskite masyve mažiausią skaičių 
+// Sugeneruokite masyvą iš 10 elementų, kurie yra masyvai iš 10 elementų, kurie yra atsitiktiniai skaičiai nuo 1 iki 100. Jeigu tokio masyvo pirminių skaičių vidurkis mažesnis už 70, suraskite masyve mažiausią skaičių (nebūtinai pirminį) ir prie jo pridėkite 3. Vėl paskaičiuokite masyvo pirminių skaičių vidurkį ir jeigu mažesnis nei 70 viską kartokite. 
+
+for($i = 0; $i < 10; $i++){
+    for ($j = 0; $j < 10; $j++){
+        $masyvas10[$i][$j] = (rand(1, 100));
+    }  
+}
+echo pirminiuSurinkimas($masyvas10);
+
+function pirminiuSurinkimas($masyvas10){
+    $maziausias = $masyvas10[0][0];
+    foreach($masyvas10 as $key => $miniMasyvas){ 
+        foreach($miniMasyvas as $miniKey => &$value){
+            if (kiekSkaiciu($value) < 3) $pirminiuArr[] = $value;
+            if ($value < $maziausias) $maziausias = $value;
+        }
+    }
+        unset($value);
+        return (array_sum($pirminiuArr) / count($pirminiuArr) < 70) ? pridetiTris($masyvas10, $maziausias) : 'pagaliau vidurkis yra: ' . (array_sum($pirminiuArr) / count($pirminiuArr)); 
+}
+//uzluzta, jei minimasyvas neturi ampersando. virsutinis nereikalauja. kodel?
+function pridetiTris($masyvas10, $maziausias){
+    foreach($masyvas10 as &$miniMasyvas){ 
+        foreach($miniMasyvas as &$value){
+            if ($value === $maziausias){
+                $value += 3;
+                unset($value);
+                unset($miniMasyvas);             
+                return pirminiuSurinkimas($masyvas10);
+            }         
+        }
+    }
+}
