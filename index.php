@@ -92,13 +92,22 @@ echo 'ilgis be pirminiu skaiciu: ' . count($pirminiuMasyvas);
 
 echo '<br><br> 7U7ZD7-7 <br><br>';
 // Sugeneruokite atsitiktinio (nuo 10 iki 20) ilgio masyvą, kurio visi, išskyrus paskutinį, elementai yra atsitiktiniai skaičiai nuo 0 iki 10, o paskutinis masyvas, kuris generuojamas pagal tokią pat salygą kaip ir pirmasis masyvas. Viską pakartokite atsitiktinį nuo 10 iki 30  kiekį kartų. Paskutinio masyvo paskutinis elementas yra lygus 0;
-// function masyvoGeneravimas(){
-// $masyvoIlgis = rand(10, 20);
-// for($i = 0; $i < $masyvoIlgis - 1; $i++){
-//     $masyvas[] = rand(0, 10);
-// }
-// masyvas[] = masyvoGeneravimas();
-// }
+
+$iteracijuSkaicius = rand(10, 30);
+$masyvoIlgis = rand(10, 20);
+$iteracijuSkaiciavimas = 0;
+
+print_r(masyvoKurimas($masyvoIlgis, $iteracijuSkaiciavimas, $iteracijuSkaicius));
+
+function masyvoKurimas($masyvoIlgis, &$iteracijuSkaiciavimas, $iteracijuSkaicius){
+    $iteracijuSkaiciavimas++;
+    for ($i = 0; $i < $masyvoIlgis - 1; $i++) {
+        $masyvasRec[] = rand(0, 10);
+    }
+    $iteracijuSkaiciavimas < $iteracijuSkaicius ? $masyvasRec[] = masyvoKurimas($masyvoIlgis, $iteracijuSkaiciavimas, $iteracijuSkaicius) : $masyvasRec[] = 0;
+    return $masyvasRec;
+}
+
 
 echo '<br><br> 8U8z*D8-8 <br><br>';
 // Suskaičiuokite septinto uždavinio elementų, kurie nėra masyvai, sumą.
@@ -110,7 +119,7 @@ for($i = 0; $i < 3; $i++){
     $masyvas9[] = rand(1, 33);
 }
 
-print_r(isPirminiai($masyvas9));
+// print_r(isPirminiai($masyvas9)); <============ funkcijos paleidimas ir printinimas
 
 function isPirminiai($masyvas9) {
     $masyvoIlgis = count($masyvas9);
