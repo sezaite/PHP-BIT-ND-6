@@ -137,7 +137,7 @@ function isPirminiai($masyvas9) {
     for ($i = $masyvoIlgis - 3; $i < $masyvoIlgis; $i++){
         if(kiekSkaiciu($masyvas9[$i]) > 2){
             $masyvas9[] = rand(1, 33);
-            return isPirminiai($masyvas9); ///kokiu atveju cia reikia return rasyt???
+            return isPirminiai($masyvas9); ///kokiu atveju cia reikia return rasyt??? ciuju visais :D
         }
     } return $masyvas9;
     }
