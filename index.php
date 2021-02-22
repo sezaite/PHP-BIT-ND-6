@@ -3,23 +3,20 @@
 echo '<br><br> PIRMAS UZD <br><br>';
 // Parašykite funkciją, kurios argumentas būtų tekstas, kuris yra įterpiamas į h1 tagą;
 
-$tekstas = 'laba diena';
 function h1($tekstas){
-    return $tekstas;
+    return '<h1>' . $tekstas . '</h1>';
 }
 
-echo '<h1>' . h1($tekstas) . '</h1>';
+echo h1('laba diena');
 
 echo '<br><br> dUu UZD <br><br>';
 // Parašykite funkciją su dviem argumentais, pirmas argumentas tekstas, įterpiamas į h tagą, o antrasis tago numeris (1-6). Rašydami šią funkciją remkitės pirmame uždavinyje parašytą funkciją;
 
-$tekstas = 'laba diena';
-$tagas = rand(1, 6);
 function tagoGeneratorius($tekstas, $tagas){
     return "<h$tagas>$tekstas</h$tagas>";
 }
 
-echo tagoGeneratorius($tekstas, $tagas);
+echo tagoGeneratorius('laba diena', rand(1, 6));
 
 echo '<br><br> tRys UZD <br><br>';
 // Generuokite atsitiktinį stringą, pasinaudodami kodu md5(time()). Visus skaitmenis stringe įdėkite į h1 tagą. Jegu iš eilės eina keli skaitmenys, juos į tagą reikią dėti kartu (h1 atsidaro prieš pirmą ir užsidaro po paskutinio) Keitimui naudokite pirmo uždavinio funkciją ir preg_replace_callback();
@@ -57,7 +54,7 @@ function kiekSkaiciu($skaicius){
     }
     // return $skaicius . 'graziai dalijasi is: ' . $count . ' sveikuju skaiciu.'; <----------cia tik ketvirtam uzd 
     return $count;
-}
+} ////jei nori demostruoti tik kaip ketvirta uzdavini, tai parasyk for'e i=2 ir istrink '='. nes cia kitiems uzdaviniams pakeista
 
 echo kiekSkaiciu($ponasSkaicius);
 
@@ -131,7 +128,6 @@ for($i = 0; $i < 3; $i++){
     $masyvas9[] = rand(1, 33);
 }
 
-print_r(isPirminiai($masyvas9));
 function isPirminiai($masyvas9) {
     $masyvoIlgis = count($masyvas9);
     for ($i = $masyvoIlgis - 3; $i < $masyvoIlgis; $i++){
@@ -140,7 +136,9 @@ function isPirminiai($masyvas9) {
             return isPirminiai($masyvas9); ///kokiu atveju cia reikia return rasyt??? ciuju visais :D
         }
     } return $masyvas9;
-    }
+}
+
+print_r(isPirminiai($masyvas9));
 
 echo '<br><br> 10/10.10 <br><br>';
 // Sugeneruokite masyvą iš 10 elementų, kurie yra masyvai iš 10 elementų, kurie yra atsitiktiniai skaičiai nuo 1 iki 100. Jeigu tokio masyvo pirminių skaičių vidurkis mažesnis už 70, suraskite masyve mažiausią skaičių (nebūtinai pirminį) ir prie jo pridėkite 3. Vėl paskaičiuokite masyvo pirminių skaičių vidurkį ir jeigu mažesnis nei 70 viską kartokite. 
@@ -150,7 +148,6 @@ for($i = 0; $i < 10; $i++){
         $masyvas10[$i][$j] = (rand(1, 100));
     }  
 }
-echo pirminiuSurinkimas($masyvas10);
 
 function pirminiuSurinkimas($masyvas10){
     $maziausias = $masyvas10[0][0];
@@ -176,3 +173,5 @@ function pridetiTris($masyvas10, $maziausias){
         }
     }
 }
+
+echo pirminiuSurinkimas($masyvas10);
